@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <image href="resistor.png" width="200" height="200">
+    <animateMotion 
+      path="M 0 0 Q 960 -540 1920 1080 Q 960 540 0 0" 
+      dur="16s" 
+      repeatCount="indefinite"
+    />
+  </image>
+</svg>

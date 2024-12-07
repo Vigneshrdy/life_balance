@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Balance</title>
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff7e6;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff7f50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom: 5px solid #ff4500;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+
+        .folder-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .folder-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fffbf1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .folder-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .folder-item img {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ff7f50;
+            border-radius: 5px;
+            background-image: url('immg.png');
+            background-size: cover;
+            transition: border-color 0.3s;
+        }
+
+        .folder-item img:hover {
+            border-color: #ff4500;
+        }
+
+        .folder-item span {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333;
+            word-break: break-word;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .back-button, .create-folder-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            background-color: #ff7f50;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover, .create-folder-btn:hover {
+            background-color: #ff4500;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .upload-container {
+            text-align: center;
+        }
+
+        input[type="file"] {
+            padding: 15px;
+            border: 2px dashed #ff7f50;
+            border-radius: 8px;
+            background-color: #ffe0b2;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="file"]:hover {
+            background-color: #ffcc80;
+            border-color: #ff4500;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            border: 2px solid #ff7f50;
+            border-radius: 8px;
+            background-color: #ffe0b2;
+            font-size: 18px;
+        }
+
+        .pdf-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .pdf-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fffbf1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pdf-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .pdf-item img {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ff7f50;
+            border-radius: 5px;
+            background-image: url('imgg.png');
+            background-size: cover;
+            transition: border-color 0.3s;
+        }
+
+        .pdf-item img:hover {
+            border-color: #ff4500;
+        }
+
+        .pdf-item span {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333;
+            word-break: break-word;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .pdf-viewer {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .pdf-viewer embed {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Life Balance
+    </header>
+
+    <div class="container" id="main-container">
+
+        <!-- Back Button -->
+        <a href="#" class="back-button" id="backBtn" style="display: none;">
+            <i class="fas fa-arrow-left"></i> Back to Folders
+        </a>
+
+        <div class="folder-list" id="folderList"></div>
+
+        <div id="uploadSection" class="upload-container" style="display: none;">
+            <label for="fileInput" style="font-size: 20px; font-weight: 600;">Click to Upload PDF Files</label>
+            <br>
+            <input type="file" id="fileInput" accept="application/pdf" multiple>
+        </div>
+
+        <div id="folderCreateSection" class="upload-container" style="display: block;">
+            <label for="folderName" style="font-size: 20px; font-weight: 600;">Create New Folder</label>
+            <br>
+            <input type="text" id="folderName" placeholder="Enter folder name">
+            <button class="create-folder-btn" id="createFolderBtn">Create Folder</button>
+        </div>
+
+        <div class="pdf-viewer" id="pdfViewer">
+            <embed id="pdfEmbed" src="" type="application/pdf">
+        </div>
+    </div>
+
+    <script>
+        const folderList = document.getElementById('folderList');
+        const folderNameInput = document.getElementById('folderName');
+        const createFolderBtn = document.getElementById('createFolderBtn');
+        const fileInput = document.getElementById('fileInput');
+        const uploadSection = document.getElementById('uploadSection');
+        const backBtn = document.getElementById('backBtn');
+        const folderCreateSection = document.getElementById('folderCreateSection');
+        const mainContainer = document.getElementById('main-container');
+        const pdfViewer = document.getElementById('pdfViewer');
+        const pdfEmbed = document.getElementById('pdfEmbed');
+
+        let folders = {}; // Object to store folders and PDFs
+        let currentFolder = null; // Track the current folder
+
+        // Function to handle folder creation
+        createFolderBtn.addEventListener('click', () => {
+            const folderName = folderNameInput.value.trim();
+
+            if (folderName && !folders[folderName]) {
+                folders[folderName] = { files: [] }; // Create a new folder
+                createFolderIcon(folderName); // Add folder icon to UI
+                folderNameInput.value = ''; // Clear the input field
+            } else if (folders[folderName]) {
+                alert('Folder with this name already exists.');
+            }
+        });
+
+        // Function to create folder icon
+        function createFolderIcon(folderName) {
+            const folderItem = document.createElement('li');
+            folderItem.className = 'folder-item';
+
+            const folderIcon = document.createElement('img');
+            folderIcon.src = 'immg.png';
+            folderIcon.alt = folderName;
+
+            const folderLabel = document.createElement('span');
+            folderLabel.textContent = folderName;
+
+            folderItem.appendChild(folderIcon);
+            folderItem.appendChild(folderLabel);
+
+            folderItem.addEventListener('click', () => {
+                openFolder(folderName);
+            });
+
+            folderList.appendChild(folderItem);
+        }
+
+        // Function to open a folder and show PDF upload
+        function openFolder(folderName) {
+            currentFolder = folderName;
+            folderList.style.display = 'none'; // Hide folder list
+            folderCreateSection.style.display = 'none'; // Hide folder creation
+            backBtn.style.display = 'block'; // Show back button
+            uploadSection.style.display = 'block'; // Show upload section
+            updateFolderTitle(folderName); // Show the folder name in the title
+            displayFiles(folderName); // Display files in the folder
+        }
+
+        // Function to update folder title
+        function updateFolderTitle(folderName) {
+            const title = document.querySelector('header');
+            title.textContent = `Upload PDFs to ${folderName}`;
+        }
+
+        // Function to display files in the current folder
+        function displayFiles(folderName) {
+            const pdfList = document.createElement('ul');
+            pdfList.className = 'pdf-list';
+
+            folders[folderName].files.forEach(file => {
+                const pdfItem = document.createElement('li');
+                pdfItem.className = 'pdf-item';
+
+                const pdfIcon = document.createElement('img');
+                pdfIcon.src = 'imgg.png';
+                pdfIcon.alt = file.name;
+
+                const pdfLabel = document.createElement('span');
+                pdfLabel.textContent = file.name;
+
+                // Handle PDF click event to open
+                pdfItem.addEventListener('click', () => {
+                    openPDF(file);
+                });
+
+                pdfItem.appendChild(pdfIcon);
+                pdfItem.appendChild(pdfLabel);
+                pdfList.appendChild(pdfItem);
+            });
+
+            const existingPdfList = document.querySelector('.pdf-list');
+            if (existingPdfList) {
+                existingPdfList.remove();
+            }
+            mainContainer.appendChild(pdfList);
+        }
+
+        // Function to open the PDF
+        function openPDF(file) {
+            pdfViewer.style.display = 'block'; // Show the PDF viewer
+            pdfEmbed.src = `data:application/pdf;base64,${file.data}`; // Set the PDF source
+        }
+
+        // Handle file input change and upload PDFs
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            for (const file of files) {
+                if (file.type === 'application/pdf') {
+                    const fileReader = new FileReader();
+                    fileReader.onload = () => {
+                        const pdfData = fileReader.result.split(',')[1]; // Get base64 data
+
+                        // Add file to the current folder's list
+                        folders[currentFolder].files.push({ name: file.name, data: pdfData });
+                        displayFiles(currentFolder); // Display files again in the folder
+                    };
+                    fileReader.readAsDataURL(file);
+                } else {
+                    alert('Please upload PDF files only.');
+                }
+            }
+        });
+
+        // Back to folders
+        backBtn.addEventListener('click', () => {
+            currentFolder = null;
+            folderList.style.display = 'block'; // Show folder list again
+            folderCreateSection.style.display = 'block'; // Show folder create button again
+            backBtn.style.display = 'none'; // Hide back button
+            uploadSection.style.display = 'none'; // Hide upload section
+            document.querySelector('header').textContent = 'PDF Upload and Viewer'; // Reset header title
+            pdfViewer.style.display = 'none'; // Hide the PDF viewer
+        });
+    </script>
+
+</body>
+</html>

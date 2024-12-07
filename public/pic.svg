@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+ <defs>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF4500"/>
+    </linearGradient>
+ </defs>
+ <rect width="1920" height="1080" fill="url(#orangeGrad)"/>
+ 
+ <text x="100" y="200" font-family="Arial" font-size="40" fill="#000000">
+    C++
+    <animateMotion path="M 0 0 Q 500 -300 -300 400 Q 800 200 0 0" dur="15s" repeatCount="indefinite"/>
+ </text>
+ 
+ <text x="1500" y="800" font-family="Arial" font-size="40" fill="#000000">
+    =
+    <animateMotion path="M 0 0 Q -700 -500 600 300 Q -500 200 0 0" dur="18s" repeatCount="indefinite"/>
+ </text>
+ 
+ <path d="M20,0 L40,60 Q20,80 0,60 Z" fill="#000000" stroke="#000000" stroke-width="2">
+    <animateMotion path="M 0 0 Q 500 -300 -300 400 Q 800 200 0 0" dur="20s" repeatCount="indefinite"/>
+ </path>
+ 
+ <text x="300" y="700" font-family="Arial" font-size="40" fill="#000000">
+    JS
+    <animateMotion path="M 0 0 Q 200 -200 -300 300 Q 500 -100 0 0" dur="16s" repeatCount="indefinite"/>
+ </text>
+ <image href="resistor.png" width="50" height="200">
+  <animateMotion path="M 0 0 Q 200 -200 -300 300 Q 500 -100 0 0" dur="16s" repeatCount="indefinite"/>
+ </image>
+ 
+<image href="test-tube.png" width="50" height="200">
+    <animateMotion path="M 0 0 Q -400 200 600 -300 Q 200 500 0 0" dur="22s" repeatCount="indefinite"/>
+ </image>
+ 
+ <text x="600" y="900" font-family="Arial" font-size="40" fill="#000000">
+    ∂/∂x
+    <animateMotion path="M 0 0 Q -400 200 600 -300 Q 200 500 0 0" dur="25s" repeatCount="indefinite"/>
+ </text>
+ 
+ <image href="capactior.png" width="50" height="200">
+    <animateMotion path="M 0 0 Q 300 -100 -200 200 Q 0 0 0 0" dur="15s" repeatCount="indefinite"/>
+ </image>
+ 
+ <text x="1600" y="600" font-family="Arial" font-size="40" fill="#000000">
+    ∫
+    <animateMotion path="M 0 0 Q -800 -300 500 400 Q -300 200 0 0" dur="20s" repeatCount="indefinite"/>
+ </text>
+ 
+ <image href="test.png" width="50" height="200">
+    <animateMotion path="M 0 0 Q -300 200 400 -300 Q 200 500 0 0" dur="19s" repeatCount="indefinite"/>
+ </image>
+ 
+ <text x="400" y="200" font-family="Arial" font-size="40" fill="#000000">
+    🧪
+    <animateMotion path="M 0 0 Q 200 -200 -300 300 Q 500 -100 0 0" dur="17s" repeatCount="indefinite"/>
+ </text>
+ 
+ <image href="pentagon.png" width="50" height="200">
+    <animateMotion path="M 0 0 Q -400 200 600 -300 Q 200 500 0 0" dur="23s" repeatCount="indefinite"/>
+ </image>
+</svg>
